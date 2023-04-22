@@ -18,8 +18,18 @@ function App() {
         <div className="text-center text-3xl text-red-500">
           ZERO FUCKING TAXES
         </div>
-        <div className="flex flex-row justify-center gap-x-4 py-12 text-center text-xl">
-          It's so early, we're still building our landing page
+        <div className="flex flex-row justify-center gap-x-4 pt-12 text-center text-xl">
+          It's so early, we're still building our landing page, but here's a{" "}
+        </div>
+        <div className="pb-12">
+          <a
+            href="https://medium.com/@frogethegod/froge-the-god-pure-meme-perfection-meh-why-not-5b1afca6da8f"
+            target="_blank"
+            rel="noopener"
+            className="text-blue-300 underline hover:text-blue-500 text-2xl "
+          >
+            MEDIUM article
+          </a>
         </div>
         <div>Contract Address</div>
         <a

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import frogeLogo from "/logo.png";
 
 function App() {

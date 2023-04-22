@@ -1,19 +1,31 @@
 //SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
+pragma solidity 0.8.18;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./interfaces/IUniswapV2Router02.sol";
 
 contract FrogeToken is ERC20, Ownable {
+    mapping(address => uint) public cooldowns;
+    mapping(address => bool) public isCooldownWhitelist;
+    uint cooldownDuration;
+    address public immutable uniswapRouter;
+    address public immutable pair;
 
-    mapping( address => bool ) public isBlacklisted;
-
-    event BlacklistStatusUpdate(address indexed _wallet, bool status);
-    event BulkBlacklistUpdate(address[] wallets, bool _status);
-
-    constructor()ERC20("Froge Token", "FROGE"){
+    constructor(address _router) ERC20("Froge", "FROGE") {
         uint initSupply = 8008580085 ether; // BOOBIES LOL!!
         _mint(owner(), initSupply);
+
+        cooldownDuration = block.timestamp + 2 weeks;
+        uniswapRouter = _router;
+        IUniswapV2Router02 router = IUniswapV2Router02(_router);
+        pair = IUniswapV2Factory(router.factory()).createPair(
+            address(this),
+            router.WETH()
+        );
+        isCooldownWhitelist[pair] = true;
+        isCooldownWhitelist[address(router)] = true;
+        isCooldownWhitelist[owner()] = true;
     }
 
     ///@notice Burn the caller's tokens
@@ -27,27 +39,30 @@ contract FrogeToken is ERC20, Ownable {
     ///@param sender wallet that sends the tokens
     ///@param recipient wallet that receives the tokens
     ///@param amount the amount of tokens to send
-    ///@dev checks that neither sender or recipient are blacklisted; 
-    function _transfer(address sender, address recipient, uint amount) internal override {
-        require(!isBlacklisted[recipient] && !isBlacklisted[sender], "Blacklisted!");
-        super._transfer(recipient, sender, amount);
+    ///@dev checks that neither sender or recipient are blacklisted;
+    function _transfer(
+        address sender,
+        address recipient,
+        uint amount
+    ) internal override {
+        uint currentTime = block.timestamp;
+        uint currentBlock = block.number;
+        if (currentTime < cooldownDuration) {
+            uint currentCooldown = cooldowns[sender];
+            if (!isCooldownWhitelist[sender]) {
+                require(currentCooldown < currentBlock, "Cooldown");
+            }
+            currentCooldown = block.number + 10;
+            cooldowns[sender] = currentCooldown;
+            cooldowns[recipient] = currentCooldown;
+        }
+        super._transfer(sender, recipient, amount);
     }
 
-    ///@notice Change a single Blacklisted wallet status, only owner can update
-    ///@param wallet wallet which status is being updated
-    ///@param status status of the wallet (true if blacklisted, false if not blacklisted)
-    function changeBlacklistStatus(address _wallet, bool _status) external onlyOwner{
-        require( isBlacklisted[_wallet] != _wallet, "Already set");
-        isBlacklisted[_wallet] = _status;
-        emit BlacklistStatusUpdate(_wallet, _status);
-    }
-    ///@notice Change Blacklisted wallets status in bulk, only owner can update
-    ///@param wallets wallets which statuses that are being updated
-    ///@param status status of the wallets (true if blacklisted, false if not blacklisted)
-    function changeBlacklistStatusBulk(address[] calldata _wallets, bool _status) external onlyOwner{
-        for(uint i = 0; i < _wallets.length; i++){
-            isBlacklisted[_wallet] = _status;
-        }
-        emit BulkBlacklistUpdate(_wallets, _status);1
+    function setCooldownWhitelist(
+        address _wallet,
+        bool set
+    ) external onlyOwner {
+        isCooldownWhitelist[_wallet] = set;
     }
 }

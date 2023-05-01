@@ -20,3 +20,13 @@
     font-family: 'Barrio', cursive;    
   }
 }
+
+@layer components{
+  .mario-bg{
+    background: url('/background.webp');
+    @apply bg-repeat-x lg:bg-contain bg-cover;
+  }
+  .highlight{
+    @apply py-2 text-xl text-white bg-black/70 px-4 rounded-xl hover:bg-white/80 hover:text-black;
+  }
+}

@@ -1,5 +1,5 @@
 import frogeLogo from "/logo.png";
-import { AiFillTwitterCircle } from "react-icons/ai";
+import { AiFillTwitterCircle, AiFillMediumCircle } from "react-icons/ai";
 import { BsTelegram } from "react-icons/bs";
 
 function App() {
@@ -96,6 +96,14 @@ function App() {
             rel="noopenner"
           >
             <AiFillTwitterCircle className="text-4xl " />
+          </a>
+          <a
+            className="rounded-full overflow-hidden hover:text-black hover:bg-white"
+            href="https://medium.com/@frogethegod"
+            target="_blank"
+            rel="noopenner"
+          >
+            <AiFillMediumCircle className="text-4xl " />
           </a>
         </nav>
       </footer>

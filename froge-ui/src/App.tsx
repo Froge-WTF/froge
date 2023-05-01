@@ -1,9 +1,29 @@
 import frogeLogo from "/logo.png";
+import { AiFillTwitterCircle } from "react-icons/ai";
+import { BsTelegram } from "react-icons/bs";
 
 function App() {
   return (
-    <>
-      <div className="flex flex-col justify-center gap-x-6 w-full flex-grow h-screen items-center px-12 py-4">
+    <main className="flex flex-col items-center min-h-screen">
+      <header className="flex flex-row justify-center w-full py-6 bg-primary">
+        <div className="flex flex-row justify-between items-center container">
+          <div className="flex flex-row items-center">
+            <div className="relative rounded-full w-20 h-20 overflow-hidden border-2 border-white">
+              <div className="top-0 -left-[5%] w-20 h-20 absolute">
+                <img
+                  src={frogeLogo}
+                  className="w-[calc(1152px/14)] h-[calc(1024px/14)]"
+                />
+              </div>
+            </div>
+            <div className="text-white text-4xl pl-6">Froge</div>
+          </div>
+          <nav className="text-xl flex flex-row gap-x-6">
+            <a>Socials</a>
+          </nav>
+        </div>
+      </header>
+      <div className="flex flex-col justify-center gap-x-6 w-full flex-grow items-center px-12 py-8">
         <div>
           <div className="relative rounded-full w-44 h-44 overflow-hidden border-2 border-white">
             <div className="top-0 -left-[5%] w-44 h-44 absolute">
@@ -59,8 +79,27 @@ function App() {
           </a>
         </nav>
       </div>
-      {/* <section className="flex flex-col justify-center items-center bg-black w-full flex-1"></section> */}
-    </>
+      <footer className="flex flex-row justify-center bg-primary w-full py-6">
+        <nav className="flex flex-row justify-center gap-x-4">
+          <a
+            className="rounded-full overflow-hidden hover:text-blue-500 hover:bg-white"
+            href="https://t.me/FrogeEth"
+            target="_blank"
+            rel="noopenner"
+          >
+            <BsTelegram className="text-4xl " />
+          </a>
+          <a
+            className="rounded-full overflow-hidden hover:text-blue-500 hover:bg-white"
+            href="https://twitter.com/frogethegod?s=20"
+            target="_blank"
+            rel="noopenner"
+          >
+            <AiFillTwitterCircle className="text-4xl " />
+          </a>
+        </nav>
+      </footer>
+    </main>
   );
 }
 

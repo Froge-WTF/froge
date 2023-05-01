@@ -64,6 +64,14 @@ function App() {
         >
           0xa9fd5065a3b57a91bf2e8029406c64d3e27eb49a
         </a>
+        <a
+          href="https://app.uniswap.org/#/swap?outputCurrency=0xa9fd5065a3b57a91bf2e8029406c64d3e27eb49a&inputCurrency=ETH"
+          target="_blank"
+          rel="noopenner"
+          className="text-white bg-blue-600 rounded-xl px-6 py-2 text-4xl mt-4 hover:text-black hover:bg-blue-400"
+        >
+          Buy Now on Uniswap
+        </a>
       </div>
       <section className="mario-bg w-full min-h-36 py-12 flex flex-col items-center">
         <h2 className="text-center text-black text-6xl pb-6">Highlights</h2>
@@ -131,6 +139,13 @@ function App() {
             <AiFillGithub className="text-4xl " />
           </a>
         </nav>
+        <a
+          href="mailto:Team@Froge.wtf"
+          target="_blank"
+          className="font-sans font-bold text-4xl text-black hover:text-white mt-4 text-center"
+        >
+          Email: Team@Froge.wtf
+        </a>
         <p className="font-sans pt-5 text-sm">Copyright Froge The God 2023©️</p>
       </footer>
     </main>

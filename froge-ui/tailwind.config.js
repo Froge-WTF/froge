@@ -8,6 +8,9 @@ export default {
     extend: {
       colors: {
         primary: "#449F3C"
+      },
+      fontFamily: {
+        'barrio': ['Barrio', 'sans-serif']
       }
     },
   },

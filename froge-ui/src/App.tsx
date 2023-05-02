@@ -5,6 +5,7 @@ import {
   AiFillMediumCircle,
   AiFillGithub,
 } from "react-icons/ai";
+import { HiOutlineCheckBadge } from "react-icons/hi2";
 import { BsTelegram } from "react-icons/bs";
 
 function App() {
@@ -75,31 +76,39 @@ function App() {
       </div>
       <section className="mario-bg w-full min-h-36 py-12 flex flex-col items-center">
         <h2 className="text-center text-black text-6xl pb-6">Highlights</h2>
-        <div className="grid grid-flow-row container grid-cols-2 font-sans font-bold px-4 gap-x-4 gap-y-6">
-          <ul className="highlight">No Pre-sale</ul>
-          <ul className="highlight">
+        <ul className="grid grid-flow-row container grid-cols-2 font-sans font-bold px-4 gap-x-4 gap-y-6">
+          <li className="highlight">No Pre-sale</li>
+          <li className="highlight">
             No Tax =&nbsp;
             <span className="text-center text-red-500 font-barrio">
               ZERO FUCKING TAXES
             </span>
-          </ul>
-          <ul className="highlight">No Team Tokens</ul>
-          <ul className="highlight">Burned Liquidity</ul>
-          <ul className="highlight">Renounced Token</ul>
-          <ul className="highlight col-span-2 md:col-span-1">
+          </li>
+          <li className="highlight">No Team Tokens</li>
+          <li className="highlight">Burned Liquidity</li>
+          <li className="highlight">Renounced Token</li>
+          <li className="highlight col-span-2 md:col-span-1">
             90% of tokens added to Liquidity
-          </ul>
-          <ul className="highlight col-span-2 md:col-span-1">
+          </li>
+          <li className="highlight col-span-2 md:col-span-1">
             12.5% of the supply already bought and burned
-          </ul>
-          <ul className="highlight col-span-2 md:col-span-1">
-            Audit (in progress, link will be posted here when final)
-          </ul>
-          <ul className="highlight col-span-2 md:col-span-1">
+          </li>
+          <a
+            href="https://github.com/CFG-NINJA/audits/blob/1ebac7c81231a4d3301fa3bb2d24cadbec811e43/20230501_CFGNINJA_Froge_FROGE_Audit.pdf"
+            target="_blank"
+            rel="noopenner"
+          >
+            <li className="highlight col-span-2 md:col-span-1 flex flex-row items-center group">
+              <HiOutlineCheckBadge className="text-green-500 text-2xl mx-2 group-hover:text-blue-800" />
+              Audit by Bladepool
+              <HiOutlineCheckBadge className="text-green-500 text-2xl mx-2 group-hover:text-blue-800" />
+            </li>
+          </a>
+          <li className="highlight col-span-2 md:col-span-1">
             Road map includes creating more safety for investors and projects,
             building with other like-minded projects, and much more
-          </ul>
-        </div>
+          </li>
+        </ul>
       </section>
       <footer
         className="flex flex-col items-center bg-primary w-full py-6"
